@@ -1,187 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trama – Tienda de ropa</title>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#EEF1F6;--surface:#fff;--ink:#12234F;--muted:#55627F;--line:#D3DAE8;--accent:#F4B42A;--on-accent:#12234F;--btn:#12234F;--on-btn:#fff;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1730;--surface:#18224A;--ink:#EEF1F8;--muted:#A9B4D0;--line:#2B3766;--accent:#F4B42A;--on-accent:#12234F;--btn:#F4B42A;--on-btn:#12234F;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0F1730;--surface:#18224A;--ink:#EEF1F8;--muted:#A9B4D0;--line:#2B3766;--btn:#F4B42A;--on-btn:#12234F;color-scheme:dark}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 Figtree,system-ui,sans-serif}
-h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.05;margin:0}
-a{color:inherit}
-button{font:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font:800 1.5rem "Bricolage Grotesque",sans-serif;text-decoration:none;letter-spacing:-.02em}
-nav{display:flex;gap:22px;align-items:center}
-nav a{text-decoration:none;font-weight:500;color:var(--muted)}
-nav a:hover{color:var(--ink)}
-.cart-btn{background:var(--btn);color:var(--on-btn);border:0;border-radius:999px;padding:8px 16px;font-weight:600}
-.hero{padding:56px 0 40px}
-.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
-.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:800;letter-spacing:-.03em}
-.hero p{max-width:44ch;color:var(--muted);font-size:1.1rem;margin:18px 0 26px}
-.cta{display:inline-block;background:var(--accent);color:var(--on-accent);font-weight:700;padding:14px 26px;border-radius:999px;text-decoration:none}
-.stack{position:relative;height:340px}
-.tile{position:absolute;width:56%;aspect-ratio:3/4;border-radius:22px;display:grid;place-items:center;color:rgba(255,255,255,.92)}
-.tile svg{width:62%;height:62%}
-.t1{background:#2E4BA8;left:0;top:30px;transform:rotate(-7deg)}
-.t2{background:#F4B42A;color:#12234F;right:0;top:0;transform:rotate(5deg)}
-.t3{background:#D9503F;left:22%;bottom:0;transform:rotate(-2deg)}
-.shop{padding:24px 0 64px}
-.shop-head{display:flex;flex-wrap:wrap;gap:16px;align-items:end;justify-content:space-between;margin-bottom:22px}
-.shop-head h2{font-size:clamp(1.8rem,4vw,2.6rem)}
-.filters{display:flex;flex-wrap:wrap;gap:8px}
-.filters button{background:transparent;color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:7px 15px;font-weight:500}
-.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
-.thumb{aspect-ratio:4/5;display:grid;place-items:center;color:rgba(255,255,255,.9)}
-.thumb svg{width:55%;height:55%}
-.info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
-.info h3{font-size:1.15rem;font-weight:700}
-.info small{color:var(--muted)}
-.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:12px}
-.price{font:700 1.15rem "Bricolage Grotesque",sans-serif}
-.add{background:var(--btn);color:var(--on-btn);border:0;border-radius:999px;padding:8px 16px;font-weight:600}
-.promo{background:var(--ink);color:var(--bg);padding:40px 0}
-.promo .wrap{display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:space-between;align-items:center}
-.promo h2{font-size:clamp(1.5rem,3.5vw,2.2rem);max-width:20ch}
-.promo ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
-footer{padding:28px 0;color:var(--muted);font-size:.92rem}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
-aside{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:10;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 20px calc(18px + env(safe-area-inset-bottom,0px))}
-aside.open{transform:none}
-aside header{position:static;border:0;background:none}
-.drawer-top{display:flex;justify-content:space-between;align-items:center}
-.drawer-top h2{font-size:1.5rem}
-.x{background:none;border:0;color:var(--ink);font-size:1.6rem;line-height:1}
-#items{flex:1;overflow:auto;margin:14px 0;display:grid;gap:12px;align-content:start}
-.line{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px}
-.dot{width:38px;height:38px;border-radius:10px}
-.line b{display:block}
-.line small{color:var(--muted)}
-.qty{display:flex;align-items:center;gap:8px}
-.qty button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);background:none;color:var(--ink)}
-.empty{color:var(--muted)}
-.total{display:flex;justify-content:space-between;font:700 1.25rem "Bricolage Grotesque",sans-serif;margin-bottom:12px}
-.checkout{display:block;text-align:center;background:var(--accent);color:var(--on-accent);font-weight:700;padding:14px;border-radius:999px;text-decoration:none}
-.checkout[aria-disabled="true"]{opacity:.45;pointer-events:none}
-.scrim{position:fixed;inset:0;background:rgba(10,15,35,.5);z-index:9;display:none}
-.scrim.open{display:block}
-@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.stack{height:280px}nav a.hide{display:none}}
-@media (prefers-reduced-motion:reduce){aside{transition:none}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hilda Edith Apaza Apaza | Técnica en ASPTI</title>
+  <meta name="description" content="CV de Hilda Edith Apaza Apaza, técnica en ASPTI de Santa Lucía, Lampa, Puno. Mantenimiento de equipos, fibra óptica, comercio electrónico, diseño y animación gráfica.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<symbol id="polera" viewBox="0 0 64 64"><path fill="currentColor" d="M22 8l-14 8 6 12 6-3v31h24V25l6 3 6-12-14-8c-1 5-5 8-10 8s-9-3-10-8z"/></symbol>
-<symbol id="pantalon" viewBox="0 0 64 64"><path fill="currentColor" d="M18 6h28l4 52H35l-3-30-3 30H14z"/></symbol>
-<symbol id="vestido" viewBox="0 0 64 64"><path fill="currentColor" d="M24 5h5c1 3 2 4 3 4s2-1 3-4h5l2 18-5 4 10 31H12l10-31-5-4z"/></symbol>
-<symbol id="abrigo" viewBox="0 0 64 64"><path fill="currentColor" d="M24 6l-14 8-4 36 8 2 2-22v30h32V30l2 22 8-2-4-36-14-8-8 12z"/></symbol>
-</svg>
+  <header class="nav">
+    <a class="nav__logo" href="#inicio">Hilda Apaza</a>
+    <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false">Menú</button>
+    <nav class="nav__links" id="menu">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#formacion">Formación</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#fotos">Fotos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
 
-<header><div class="wrap">
-<a class="logo" href="#">Trama</a>
-<nav><a class="hide" href="#catalogo">Catálogo</a><a class="hide" href="#envios">Envíos</a>
-<button class="cart-btn" id="open" aria-label="Abrir carrito">Carrito (<span id="count">0</span>)</button></nav>
-</div></header>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero__text">
+        <p class="hero__role">Técnica en ASPTI</p>
+        <h1>Hilda Edith<br>Apaza Apaza</h1>
+        <p class="hero__lead">Mantenimiento de equipos, fibra óptica, comercio electrónico y animación gráfica.</p>
+        <div class="hero__actions">
+          <a class="btn btn--main" href="cv/CV_Hilda_Edith_Apaza_Apaza.pdf" download>Descargar CV en PDF</a>
+          <a class="btn" href="cv/CV_Hilda_Edith_Apaza_Apaza.docx" download>Descargar en Word</a>
+        </div>
+      </div>
+      <img class="hero__photo" src="img/perfil.jpg" alt="Foto de Hilda Edith Apaza Apaza" width="320" height="320">
+    </section>
 
-<section class="hero"><div class="wrap">
-<div>
-<h1>Ropa que te acompaña todo el año.</h1>
-<p>Poleras, jeans, vestidos y casacas hechos con algodón y lino de buena caída. Elige, paga y recibe en casa.</p>
-<a class="cta" href="#catalogo">Ver colección</a>
-</div>
-<div class="stack" aria-hidden="true">
-<div class="tile t1"><svg><use href="#abrigo"/></svg></div>
-<div class="tile t2"><svg><use href="#polera"/></svg></div>
-<div class="tile t3"><svg><use href="#vestido"/></svg></div>
-</div>
-</div></section>
+    <section class="section" id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <p>Técnica en ASPTI con conocimientos en mantenimiento de equipos, fibra óptica, comercio electrónico y ofimática a nivel intermedio, y buen manejo del diseño y la animación gráfica. Soy responsable y tengo disposición para aprender. Busco incorporarme a un puesto donde pueda aplicar mis conocimientos técnicos y seguir desarrollándome profesionalmente.</p>
+    </section>
 
-<section class="shop" id="catalogo"><div class="wrap">
-<div class="shop-head">
-<h2>Colección de temporada</h2>
-<div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
-</div>
-<div class="grid" id="grid"></div>
-</div></section>
+    <section class="section" id="habilidades">
+      <h2>Habilidades</h2>
+      <ul class="chips">
+        <li>Mantenimiento de equipos</li>
+        <li>Ofimática nivel intermedio</li>
+        <li>Fibra óptica</li>
+        <li>Comercio electrónico</li>
+        <li>Diseño y animación gráfica</li>
+      </ul>
+    </section>
 
-<section class="promo" id="envios"><div class="wrap">
-<h2>Envío gratis en compras desde S/ 200.</h2>
-<ul><li>Entregas en Lima en 24 a 48 horas</li><li>Envíos a provincias en 3 a 5 días</li><li>Cambios gratis dentro de 15 días</li></ul>
-</div></section>
+    <section class="section" id="formacion">
+      <h2>Formación</h2>
+      <article class="item">
+        <p class="item__date">2024 – 2026</p>
+        <div>
+          <h3>Técnica en ASPTI</h3>
+          <p>Instituto de Educación Superior Tecnológico Público Santa Lucía</p>
+        </div>
+      </article>
+    </section>
 
-<footer><div class="wrap"><span>© 2026 Trama. Todos los derechos reservados.</span><span>Lima, Perú</span></div></footer>
+    <section class="section" id="experiencia">
+      <h2>Experiencia</h2>
+      <p class="section__sub">Pre-prácticas</p>
+      <div class="timeline">
+        <article class="item">
+          <p class="item__date">2024</p>
+          <div><h3>Mantenimiento de equipos y ofimática</h3></div>
+        </article>
+        <article class="item">
+          <p class="item__date">2025</p>
+          <div><h3>Fibra óptica</h3></div>
+        </article>
+        <article class="item">
+          <p class="item__date">2026</p>
+          <div><h3>Comercio electrónico, diseño y animación gráfica</h3></div>
+        </article>
+      </div>
+    </section>
 
-<div class="scrim" id="scrim"></div>
-<aside id="drawer" aria-label="Carrito de compras" aria-hidden="true">
-<div class="drawer-top"><h2>Tu carrito</h2><button class="x" id="close" aria-label="Cerrar carrito">×</button></div>
-<div id="items"></div>
-<div class="total"><span>Total</span><span id="total">S/ 0</span></div>
-<a class="checkout" id="checkout" href="#" aria-disabled="true">Finalizar compra por WhatsApp</a>
-</aside>
+    <section class="section" id="fotos">
+      <h2>Fotos</h2>
+      <div class="gallery">
+        <button class="gallery__item" data-full="img/foto-saco-azul.jpg" data-alt="Hilda con saco azul">
+          <img src="img/foto-saco-azul.jpg" alt="Hilda con saco azul" loading="lazy">
+        </button>
+        <button class="gallery__item gallery__item--tall" data-full="img/foto-abrigo.jpg" data-alt="Hilda con abrigo negro">
+          <img src="img/foto-abrigo.jpg" alt="Hilda con abrigo negro" loading="lazy">
+        </button>
+      </div>
+    </section>
 
-<script>
-var P=[
-{id:1,n:"Polera oversize",c:"Poleras",p:59,col:"#2E4BA8",i:"polera",d:"Algodón pima, corte amplio"},
-{id:2,n:"Polera básica blanca",c:"Poleras",p:45,col:"#8A97B8",i:"polera",d:"Algodón suave, cuello redondo"},
-{id:3,n:"Jean recto",c:"Pantalones",p:129,col:"#3A5A8C",i:"pantalon",d:"Denim rígido, tiro alto"},
-{id:4,n:"Short cargo",c:"Pantalones",p:89,col:"#6B7A4B",i:"pantalon",d:"Sarga ligera, bolsillos laterales"},
-{id:5,n:"Vestido de lino",c:"Vestidos",p:149,col:"#D9503F",i:"vestido",d:"Lino fresco, largo midi"},
-{id:6,n:"Vestido camisero",c:"Vestidos",p:139,col:"#B8860B",i:"vestido",d:"Botones al frente y cinturón"},
-{id:7,n:"Casaca de denim",c:"Abrigos",p:189,col:"#27406F",i:"abrigo",d:"Forro de algodón, corte clásico"},
-{id:8,n:"Hoodie con capucha",c:"Abrigos",p:119,col:"#5B4B8A",i:"abrigo",d:"Algodón perchado, bolsillo canguro"}
-];
-var cats=["Todo","Poleras","Pantalones","Vestidos","Abrigos"],cur="Todo",cart={};
-var $=function(i){return document.getElementById(i)};
-function money(n){return "S/ "+n}
-function drawFilters(){
-  $("filters").innerHTML=cats.map(function(c){return '<button type="button" data-c="'+c+'" aria-pressed="'+(c===cur)+'">'+c+'</button>'}).join("");
-}
-function drawGrid(){
-  $("grid").innerHTML=P.filter(function(x){return cur==="Todo"||x.c===cur}).map(function(x){
-    return '<article class="card"><div class="thumb" style="background:'+x.col+'"><svg><use href="#'+x.i+'"/></svg></div>'+
-    '<div class="info"><h3>'+x.n+'</h3><small>'+x.d+'</small><div class="row"><span class="price">'+money(x.p)+'</span>'+
-    '<button class="add" type="button" data-add="'+x.id+'">Agregar</button></div></div></article>';
-  }).join("");
-}
-function drawCart(){
-  var ids=Object.keys(cart),n=0,t=0;
-  var h=ids.map(function(id){var x=P.filter(function(p){return p.id==id})[0],q=cart[id];n+=q;t+=q*x.p;
-    return '<div class="line"><div class="dot" style="background:'+x.col+'"></div><div><b>'+x.n+'</b><small>'+money(x.p)+'</small></div>'+
-    '<div class="qty"><button type="button" data-m="'+id+'" aria-label="Quitar uno">−</button><span>'+q+'</span><button type="button" data-p="'+id+'" aria-label="Agregar uno">+</button></div></div>';
-  }).join("");
-  $("items").innerHTML=h||'<p class="empty">Tu carrito está vacío. Agrega una prenda para empezar.</p>';
-  $("count").textContent=n;$("total").textContent=money(t);
-  var msg="Hola, quiero comprar:\n"+ids.map(function(id){var x=P.filter(function(p){return p.id==id})[0];return "- "+cart[id]+" x "+x.n}).join("\n")+"\nTotal: "+money(t);
-  var a=$("checkout");
-  a.setAttribute("aria-disabled",n?"false":"true");
-  a.href=n?"https://wa.me/51999999999?text="+encodeURIComponent(msg):"#";
-  if(n)a.target="_blank";
-}
-function toggle(o){$("drawer").classList.toggle("open",o);$("scrim").classList.toggle("open",o);$("drawer").setAttribute("aria-hidden",!o)}
-document.addEventListener("click",function(e){
-  var t=e.target;
-  if(t.dataset.c){cur=t.dataset.c;drawFilters();drawGrid()}
-  if(t.dataset.add){cart[t.dataset.add]=(cart[t.dataset.add]||0)+1;drawCart();toggle(true)}
-  if(t.dataset.p){cart[t.dataset.p]++;drawCart()}
-  if(t.dataset.m){if(--cart[t.dataset.m]<=0)delete cart[t.dataset.m];drawCart()}
-});
-$("open").onclick=function(){toggle(true)};
-$("close").onclick=function(){toggle(false)};
-$("scrim").onclick=function(){toggle(false)};
-document.addEventListener("keydown",function(e){if(e.key==="Escape")toggle(false)});
-drawFilters();drawGrid();drawCart();
-</script>
+    <section class="section contact" id="contacto">
+      <h2>Contacto</h2>
+      <ul class="contact__list">
+        <li><span>Teléfono</span><a href="tel:+51907890725">907 890 725</a></li>
+        <li><span>WhatsApp</span><a href="https://wa.me/51907890725" target="_blank" rel="noopener">Escríbeme por WhatsApp</a></li>
+        <li><span>Correo</span><a href="mailto:hildaapaza2006@gmail.com">hildaapaza2006@gmail.com</a></li>
+        <li><span>Ubicación</span><b>Santa Lucía, Lampa, Puno</b></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> Hilda Edith Apaza Apaza</p>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox__close" aria-label="Cerrar foto">Cerrar</button>
+    <img src="" alt="">
+  </dialog>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
