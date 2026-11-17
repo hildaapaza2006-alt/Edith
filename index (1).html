@@ -71,6 +71,8 @@ section.bloque{margin-top:44px}
 .tarjeta{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:14px}
 .tarjeta h3{font-size:1.15rem;margin:6px 0 2px}
 .fecha{display:inline-block;background:var(--navy);color:#fff;font-weight:700;font-size:.82rem;padding:2px 12px;border-radius:999px}
+.acerca p{color:var(--ink)}
+.acerca p:last-child{margin-bottom:0}
 .chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
 .chips li{background:var(--navy);color:#fff;padding:8px 18px;border-radius:999px;font-weight:600;font-size:.95rem}
 .chips li:nth-child(even){background:var(--navy2)}
@@ -94,6 +96,7 @@ footer{text-align:center;color:var(--muted);font-size:.9rem;padding:40px 0 30px}
   <a class="marca" href="#perfil">Hilda Apaza</a>
   <ul id="menu">
     <li><a href="#perfil">Perfil</a></li>
+    <li><a href="#acerca">Acerca de mí</a></li>
     <li><a href="#formacion">Formación</a></li>
     <li><a href="#experiencia">Experiencia</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
@@ -131,6 +134,15 @@ footer{text-align:center;color:var(--muted);font-size:.9rem;padding:40px 0 30px}
         <p>Técnica en Arquitectura de Plataformas y Servicios de Tecnologías de la Información (APSTI), con formación en mantenimiento de equipos, ofimática, fibra óptica, comercio electrónico y diseño y animación gráfica. Me destaco en la animación gráfica y busco seguir creciendo en el área tecnológica y digital.</p>
       </section>
     </header>
+
+    <section class="bloque" id="acerca">
+      <h2>Acerca de mí</h2>
+      <div class="tarjeta acerca">
+        <p>Hola, soy Hilda Edith Apaza Apaza y vivo en Santa Lucía, Lampa, Puno. Estudié la carrera de APSTI en el Instituto de Educación Superior Tecnológico Público Santa Lucía.</p>
+        <p>Me gusta la tecnología, el diseño y la animación gráfica, que es donde más me destaco. En mis pre-prácticas trabajé en mantenimiento de equipos, ofimática, fibra óptica y, en Juliaca, en diseño.</p>
+        <p>Me gusta aprender cosas nuevas y busco una oportunidad para seguir creciendo en el área tecnológica y digital.</p>
+      </div>
+    </section>
 
     <section class="bloque" id="formacion">
       <h2>Formación</h2>
@@ -186,7 +198,7 @@ document.getElementById("anio").textContent = new Date().getFullYear();
 
 // Resalta en el menú la sección que estás viendo
 var enlaces = document.querySelectorAll("#menu a");
-var secciones = ["perfil","formacion","experiencia","proyectos","habilidades","contacto"]
+var secciones = ["perfil","acerca","formacion","experiencia","proyectos","habilidades","contacto"]
   .map(function(id){ return document.getElementById(id); });
 function marcar(){
   var y = window.scrollY + 120, actual = secciones[0].id;
