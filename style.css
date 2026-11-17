@@ -7,7 +7,9 @@
   --line:#DCDBEE;
   --side:#1E2A6B;
   --side-ink:#F2F1FA;
-  --accent:#D7263D;
+  --accent:#F2B134;
+  --on-accent:#1B2150;
+  --link:#1E2A6B;
   --chip:rgba(255,255,255,.14);
 }
 :root[data-tema="oscuro"]{
@@ -17,6 +19,7 @@
   --muted:#A9AED6;
   --line:#2B3270;
   --side:#0A0D26;
+  --link:#F2B134;
   --side-ink:#ECEBFA;
 }
 
@@ -67,7 +70,6 @@ a{color:inherit}
   text-transform:uppercase;
   margin-bottom:12px;
   color:var(--accent);
-  filter:brightness(1.5);
 }
 .contacto,.chips{list-style:none;margin:0;padding:0}
 .contacto li{display:grid;margin-bottom:12px}
@@ -78,7 +80,7 @@ a{color:inherit}
   display:block;
   text-align:center;
   background:var(--accent);
-  color:#fff;
+  color:var(--on-accent);
   font-weight:700;
   text-decoration:none;
   padding:12px;
@@ -117,14 +119,14 @@ a{color:inherit}
 .fecha{
   display:inline-block;
   background:var(--accent);
-  color:#fff;
+  color:var(--on-accent);
   font-weight:700;
   font-size:.82rem;
   padding:2px 12px;
   border-radius:999px;
 }
 .linea{border-left:3px solid var(--line);padding-left:20px}
-.enlace{color:var(--accent);font-weight:700;overflow-wrap:anywhere}
+.enlace{color:var(--link);font-weight:700;overflow-wrap:anywhere}
 footer{text-align:center;color:var(--muted);font-size:.9rem;padding:10px 0}
 
 /* ---------- Animación al hacer scroll ---------- */
